@@ -17,7 +17,7 @@
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/i3wm-setup.git
+git clone https://github.com/in-jun/i3wm-setup.git
 ```
 
 2. Copy configuration files:
