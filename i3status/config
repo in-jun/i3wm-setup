@@ -1,0 +1,80 @@
+# i3status configuration file
+
+general {
+    colors = true
+    interval = 1
+    color_good = "#8bc34a"
+    color_degraded = "#ffc107"
+    color_bad = "#f44336"
+    output_format = "i3bar"
+    separator = " | "
+}
+
+# Display order
+order += "cpu_usage"
+order += "memory"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+order += "volume master"
+order += "tztime local"
+
+# CPU usage
+cpu_usage {
+    format = "CPU: %usage"
+    degraded_threshold = 50
+    max_threshold = 80
+    format_above_threshold = "CPU(!): %usage"
+}
+
+# Memory
+memory {
+    format = "MEM: %used/%total (%percentage_used)"
+    threshold_degraded = "10%"
+    threshold_critical = "5%"
+    format_degraded = "MEM(!): %available left"
+}
+
+# Wireless
+wireless _first_ {
+    format_up = "WIFI: %essid [%quality/%bitrate] %ip"
+    format_down = "WIFI: disconnected"
+}
+
+# Ethernet
+ethernet _first_ {
+    format_up = "ETH: %ip [%speed]"
+    format_down = "ETH: disconnected"
+}
+
+# Battery
+battery all {
+    format = "BAT: %status %percentage (%remaining) [%consumption]"
+    format_down = "No battery"
+    format_percentage = "%.1f%%"
+    status_chr = "CHARGING"
+    status_bat = "DISCHARGING"
+    status_unk = "UNKNOWN"
+    status_full = "FULL"
+    path = "/sys/class/power_supply/CMB%d/uevent"
+    low_threshold = 20
+    threshold_type = percentage
+    integer_battery_capacity = false
+    last_full_capacity = true
+    hide_seconds = false
+}
+
+# Volume
+volume master {
+    format = "VOL: %volume"
+    format_muted = "VOL: muted"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+# Time
+tztime local {
+    locale = "ko_KR.UTF-8"
+    format = "%Y-%m-%d %p %I:%M:%S (%a)"
+}
